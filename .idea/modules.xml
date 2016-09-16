@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gradle-learn.iml" filepath="$PROJECT_DIR$/.idea/modules/gradle-learn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gradle-learn_main.iml" filepath="$PROJECT_DIR$/.idea/modules/gradle-learn_main.iml" group="gradle-learn" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gradle-learn_test.iml" filepath="$PROJECT_DIR$/.idea/modules/gradle-learn_test.iml" group="gradle-learn" />
+    </modules>
+  </component>
+</project>
