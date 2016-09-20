@@ -4,8 +4,7 @@ import java.util.ArrayList;
  * Created by victoryw on 9/20/16.
  */
 public class ParkBoy {
-    private ParkLot parkLot;
-    private ArrayList<ParkLot> parkLots = new ArrayList<>();
+    protected ArrayList<ParkLot> parkLots = new ArrayList<>();
 
     public ParkBoy(ParkLot parkLot) {
         parkLots.add(parkLot);

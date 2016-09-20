@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -24,7 +25,7 @@ public class ParkLot {
     }
 
     public boolean CanParkNewCar() {
-        return cars.keySet().toArray().length+1 <= maxAvaiableCarNum;
+        return getAvaiableCount() > 0;
     }
 
     public Car Pick(String token) {
@@ -37,4 +38,11 @@ public class ParkLot {
         return  null;
     }
 
+    public int getAvaiableCount() {
+        return maxAvaiableCarNum-cars.size();
+    }
+
+    public double GetPlotRatio() {
+        return (double)getAvaiableCount() / (double)maxAvaiableCarNum;
+    }
 }
