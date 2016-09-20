@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
-import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by victoryw on 9/20/16.
@@ -14,22 +12,29 @@ public class ParkLot {
         maxAvaiableCarNum = i;
     }
 
-    ArrayList<Car> cars = new ArrayList<>();
+    HashMap<String,Car> cars = new HashMap<>();
 
     public String Park(Car car) throws NoSpaceException {
-        if(canParkNewCar()){
+        if(!CanParkNewCar()){
             throw new NoSpaceException();
         }
-        cars.add(car);
-        return String.valueOf(cars.indexOf(car));
+        String token = String.valueOf(UUID.randomUUID());
+        cars.put(token,car);
+        return token;
     }
 
-    private boolean canParkNewCar() {
-        return cars.toArray().length+1>maxAvaiableCarNum;
+    public boolean CanParkNewCar() {
+        return cars.keySet().toArray().length+1 <= maxAvaiableCarNum;
     }
 
     public Car Pick(String token) {
-        int index = Integer.parseInt(token);
-        return cars.get(index);
+        if(cars.containsKey(token))
+        {
+            Car car = cars.get(token);
+            cars.remove(token);
+            return car;
+        }
+        return  null;
     }
+
 }
