@@ -3,27 +3,22 @@ import java.util.ArrayList;
 /**
  * Created by victoryw on 9/20/16.
  */
-public class ParkBoy {
-    protected ArrayList<ParkLot> parkLots = new ArrayList<>();
+public class ParkBoy extends ParkAgent {
+
 
     public ParkBoy(ParkLot parkLot) {
-        parkLots.add(parkLot);
+        super(parkLot);
     }
 
     public ParkBoy(ArrayList<ParkLot> parkLots) {
-
-        this.parkLots = parkLots;
+        super(parkLots);
     }
 
-    public String Park(Car car) throws NoSpaceException {
-
+    @Override
+    protected ParkLot selectLot() {
         return parkLots.stream().
-                filter(lot -> lot.CanParkNewCar()).
-                findFirst().
-                get().Park(car);
-    }
-
-    public Car Pick(String token) {
-        return parkLots.stream().map(lot-> lot.Pick(token)).filter(car-> car != null).findFirst().get();
+                    filter(lot -> lot.CanParkNewCar()).
+                    findFirst().
+                    get();
     }
 }

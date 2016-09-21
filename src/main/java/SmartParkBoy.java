@@ -4,7 +4,7 @@ import java.util.Comparator;
 /**
  * Created by victoryw on 9/20/16.
  */
-public class SmartParkBoy extends ParkBoy {
+public class SmartParkBoy extends ParkAgent {
     public SmartParkBoy(ArrayList<ParkLot> parkLots)  {
         super(parkLots);
     }
@@ -17,7 +17,7 @@ public class SmartParkBoy extends ParkBoy {
     public String Park(Car car) throws NoSpaceException {
         return parkLots.
                 stream().
-                max(Comparator.comparing(lot -> lot.getAvaiableCount())).
+                max(Comparator.comparing(lot -> lot.getAvailableCount())).
                 get().
                 Park(car);
     }

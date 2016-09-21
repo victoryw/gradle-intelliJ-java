@@ -1,4 +1,3 @@
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -7,10 +6,10 @@ import java.util.UUID;
  */
 public class ParkLot {
 
-    private final int maxAvaiableCarNum;
+    protected final int maxAvailableCarNam;
 
     public ParkLot(int i) {
-        maxAvaiableCarNum = i;
+        maxAvailableCarNam = i;
     }
 
     HashMap<String,Car> cars = new HashMap<>();
@@ -25,7 +24,7 @@ public class ParkLot {
     }
 
     public boolean CanParkNewCar() {
-        return getAvaiableCount() > 0;
+        return getAvailableCount() > 0;
     }
 
     public Car Pick(String token) {
@@ -38,11 +37,18 @@ public class ParkLot {
         return  null;
     }
 
-    public int getAvaiableCount() {
-        return maxAvaiableCarNum-cars.size();
+    public int getAvailableCount() {
+        return maxAvailableCarNam -cars.size();
     }
 
     public double GetPlotRatio() {
-        return (double)getAvaiableCount() / (double)maxAvaiableCarNum;
+        return (double) getAvailableCount() / (double) maxAvailableCarNam;
+    }
+
+    public void Report(int level, StringBuilder builder) {
+        builder.append(new String(new char[level]).replace("\0", " "));
+        builder.append(String.format("%1 %2", maxAvailableCarNam,cars.size()));
     }
 }
+
+

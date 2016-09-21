@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class SuperBoyTest{
     @Test
     public void should_park_pick_car_by_super_boy() throws NoSpaceException {
-        SuperBoy boy = new SuperBoy(new ParkLot(1));
+        ParkAgent boy = new SuperBoy(new ParkLot(1));
         Car car = new Car();
         String token = boy.Park(car);
         assertEquals(car,boy.Pick(token));
@@ -24,7 +24,7 @@ public class SuperBoyTest{
         lot2.Park(new Car());
         lots.add(lot2);
 
-        SuperBoy boy = new SuperBoy(lots);
+        ParkAgent boy = new SuperBoy(lots);
         Car car = new Car();
         String token = boy.Park(car);
         assertEquals(car,lot2.Pick(token));
@@ -32,3 +32,5 @@ public class SuperBoyTest{
     }
 
 }
+
+
