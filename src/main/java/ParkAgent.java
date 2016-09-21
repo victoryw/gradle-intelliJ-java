@@ -34,13 +34,8 @@ public class ParkAgent  {
         builder.append(new String(new char[level]).replace("\0", " "));
         builder.append(String.format("M %1 %2",GetParkedCount(),GetMaxAvailableCarNum()));
         parkLots.stream().forEach(lot->{
-            AppendParkLotToReport(level, builder, lot);
+            new StringReportBuilder().AppendReportToReport(level +1, builder, lot);
         });
-    }
-
-    protected void AppendParkLotToReport(int level, StringBuilder builder, ParkLot lot) {
-        builder.append("/r/n");
-        lot.Report(level+1, builder);
     }
 
     public int GetParkedCount() {
