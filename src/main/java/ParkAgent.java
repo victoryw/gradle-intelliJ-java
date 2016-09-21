@@ -35,10 +35,11 @@ public class ParkAgent  {
     }
 
     public void Report(int level, StringBuilder builder){
-        StringReportBuilder reportBuilder = new StringReportBuilder();
-        reportBuilder.AppendDialogue(level, builder,this);
+
+        StringReportBuilder reportBuilder = new StringReportBuilder(builder);
+        reportBuilder.AppendDialogue(level,this);
         parkLots.stream().forEach(lot->{
-            reportBuilder.AppendReportToReport(level +1, builder, lot);
+            reportBuilder.AppendReportToReport(level +1, lot);
         });
     }
 

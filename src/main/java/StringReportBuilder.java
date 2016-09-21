@@ -2,24 +2,38 @@
  * Created by victoryw on 9/21/16.
  */
 public class StringReportBuilder {
-    public static void AppendDialogue(int level, StringBuilder builder, ParkAgent parkAgent) {
-        builder.append(new String(new char[level]).replace("\0", " "));
-        builder.append(parkAgent.GetContent());
+
+
+    private StringBuilder stringBuilder;
+
+    public StringReportBuilder() {
+
     }
 
-    public static void AppendDialogue(int level, StringBuilder builder, ParkLot lot) {
-        builder.append(new String(new char[level]).replace("\0", " "));
-        builder.append(lot.GetContent());
+    public StringReportBuilder(StringBuilder stringBuilder){
+
+        this.stringBuilder = stringBuilder;
     }
 
-    public void AppendReportToReport(int level, StringBuilder builder, ParkLot lot) {
-        builder.append("/r/n");
-        lot.Report(level+1, builder);
+    public void AppendDialogue(int level, ParkLot lot) {
+        stringBuilder.append(new String(new char[level]).replace("\0", " "));
+        stringBuilder.append(lot.GetContent());
     }
 
 
-    public void AppendReportToReport(int level, StringBuilder builder, ParkAgent boy) {
-        builder.append("/r/n");
-        boy.Report(level+1, builder);
+    public void AppendReportToReport(int level, ParkLot lot) {
+        stringBuilder.append("/r/n");
+        lot.Report(level+1, stringBuilder);
+    }
+
+    public void AppendReportToReport(int level, ParkAgent boy) {
+        stringBuilder.append("/r/n");
+        boy.Report(level+1, stringBuilder);
+    }
+
+
+    public void AppendDialogue(int level, ParkAgent parkAgent) {
+        stringBuilder.append(new String(new char[level]).replace("\0", " "));
+        stringBuilder.append(parkAgent.GetContent());
     }
 }

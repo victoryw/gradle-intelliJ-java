@@ -54,8 +54,9 @@ public class ParkLot {
     }
 
     public void Report(int level, StringBuilder builder) {
-        StringReportBuilder reportBuilder = new StringReportBuilder();
-        reportBuilder.AppendDialogue(level,builder,this);
+
+        StringReportBuilder reportBuilder = new StringReportBuilder(builder);
+        reportBuilder.AppendDialogue(level,this);
     }
 
 }
