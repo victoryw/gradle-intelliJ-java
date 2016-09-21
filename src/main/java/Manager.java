@@ -37,7 +37,6 @@ public class Manager {
 
 
     public String TotalReport(){
-        StringBuilder builder = new StringBuilder();
 
         StringReportBuilder stringReportBuilder = new StringReportBuilder();
 
