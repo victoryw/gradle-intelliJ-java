@@ -6,12 +6,12 @@ public class StringReportBuilder {
 
     private StringBuilder stringBuilder;
 
-    public StringReportBuilder() {
-
+    public StringReportBuilder(){
+        this.stringBuilder = new StringBuilder();
     }
 
-    public StringReportBuilder(StringBuilder stringBuilder){
-        this.stringBuilder = stringBuilder;
+    public void AppendDialogue(Manager manager) {
+        stringBuilder.append(manager.GetContent());
     }
 
     public void AppendDialogue(int level, ParkLot lot) {
@@ -34,5 +34,9 @@ public class StringReportBuilder {
     public void AppendDialogue(int level, ParkAgent parkAgent) {
         stringBuilder.append(new String(new char[level]).replace("\0", " "));
         stringBuilder.append(parkAgent.GetContent());
+    }
+
+    public String Build(){
+        return stringBuilder.toString();
     }
 }

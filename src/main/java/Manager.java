@@ -39,9 +39,9 @@ public class Manager {
     public String TotalReport(){
         StringBuilder builder = new StringBuilder();
 
-        builder.append(String.format("M %1 %2", GetParkedCount(), GetMaxAvailableCarNum()));
+        StringReportBuilder stringReportBuilder = new StringReportBuilder();
 
-        StringReportBuilder stringReportBuilder = new StringReportBuilder(builder);
+        stringReportBuilder.AppendDialogue(this);
 
         stringReportBuilder.AppendReportToReport(1, lot);
 
@@ -50,7 +50,12 @@ public class Manager {
         stringReportBuilder.AppendReportToReport(1, parkBoy);
 
 
-        return builder.toString();
+        return stringReportBuilder.Build();
+    }
+
+
+    public String GetContent() {
+        return String.format("M %1 %2", GetParkedCount(), GetMaxAvailableCarNum());
     }
 
 
