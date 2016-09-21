@@ -1,6 +1,7 @@
-public class Manager extends ParkAgent{
+public class Manager {
 
 
+    private ParkLot lot;
     private SuperBoy superBoy;
     private ParkBoy parkBoy;
     private SmartParkBoy smartParkBoy;
@@ -9,7 +10,8 @@ public class Manager extends ParkAgent{
                    SuperBoy superBoy,
                    ParkBoy parkBoy,
                    SmartParkBoy smartParkBoy) {
-        super(lot);
+        this.lot = lot;
+
 
         this.superBoy = superBoy;
         this.parkBoy = parkBoy;
@@ -29,22 +31,45 @@ public class Manager extends ParkAgent{
         return smartParkBoy.Park(car);
     }
 
-    @Override
-    protected ParkLot selectLot() {
-        return parkLots.get(0);
+    public String Park(Car car) throws NoSpaceException{
+        return lot.Park(car);
     }
-
 
 
     public String TotalReport(){
         StringBuilder builder = new StringBuilder();
-        Report(0, builder);
-        AppendNewElement(builder, superBoy);
-        AppendNewElement(builder, smartParkBoy);
-        AppendNewElement(builder, parkBoy);
+        builder.append(String.format("M %1 %2", GetParkedCount(), GetMaxAvailableCarNum()));
+        builder.append("/r/n");
+        lot.Report(1, builder);
+        builder.append("/r/n");
+        superBoy.Report(1, builder);
+        builder.append("/r/n");
+        smartParkBoy.Report(1, builder);
+        builder.append("/r/n");
+        parkBoy.Report(1, builder);
         return builder.toString();
 
     }
+
+
+
+
+
+    protected int GetMaxAvailableCarNum() {
+        return lot.maxAvailableCarNam
+                    + superBoy.GetMaxAvailableCarNum()
+                    + parkBoy.GetMaxAvailableCarNum()
+                    + smartParkBoy.GetMaxAvailableCarNum();
+    }
+
+    protected int GetParkedCount() {
+
+        return lot.GetParkedCars()
+                + superBoy.GetParkedCount()
+                + parkBoy.GetParkedCount()
+                + smartParkBoy.GetParkedCount();
+    }
+
 
 
 

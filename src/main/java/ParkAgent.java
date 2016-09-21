@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Created by victoryw on 9/21/16.
  */
-public class ParkAgent implements IReport  {
+public class ParkAgent  {
     protected ArrayList<ParkLot> parkLots = new ArrayList<>();
 
     public ParkAgent(ParkLot parkLot) {
@@ -25,13 +25,6 @@ public class ParkAgent implements IReport  {
         return null;
     }
 
-    private int MaxPark(){
-        return parkLots.get(0).maxAvailableCarNam;
-    }
-
-    private int AvailableCount(){
-        return parkLots.stream().mapToInt(lot->lot.getAvailableCount()).sum();
-    }
 
     public Car Pick(String token) {
         return parkLots.stream().map(lot-> lot.Pick(token)).filter(car-> car != null).findFirst().get();
@@ -39,14 +32,18 @@ public class ParkAgent implements IReport  {
 
     public void Report(int level, StringBuilder builder){
         builder.append(new String(new char[level]).replace("\0", " "));
-        builder.append(String.format("M %1 %2",MaxPark(),AvailableCount()));
+        builder.append(String.format("M %1 %2",GetParkedCount(),GetMaxAvailableCarNum()));
         parkLots.stream().forEach(lot->{
-            AppendNewElement(builder, lot);
+            builder.append("/r/n");
+            lot.Report(1, builder);
         });
     }
 
-    protected void AppendNewElement(StringBuilder builder, IReport reporter) {
-        builder.append("/r/n");
-        reporter.Report(1,builder);
+    public int GetParkedCount() {
+        return parkLots.stream().mapToInt(lot->lot.GetParkedCars()).sum();
+    }
+
+    public int GetMaxAvailableCarNum() {
+        return parkLots.stream().mapToInt(lot->lot.maxAvailableCarNam).sum();
     }
 }

@@ -4,7 +4,7 @@ import java.util.UUID;
 /**
  * Created by victoryw on 9/20/16.
  */
-public class ParkLot implements IReport {
+public class ParkLot {
 
     protected final int maxAvailableCarNam;
 
@@ -13,6 +13,10 @@ public class ParkLot implements IReport {
     }
 
     HashMap<String,Car> cars = new HashMap<>();
+
+    public int GetParkedCars() {
+        return this.cars.size();
+    }
 
     public String Park(Car car) throws NoSpaceException {
         if(!CanParkNewCar()){
@@ -45,10 +49,9 @@ public class ParkLot implements IReport {
         return (double) getAvailableCount() / (double) maxAvailableCarNam;
     }
 
-    @Override
     public void Report(int level, StringBuilder builder) {
         builder.append(new String(new char[level]).replace("\0", " "));
-        builder.append(String.format("%1 %2", maxAvailableCarNam,cars.size()));
+        builder.append(String.format("%1 %2", GetParkedCars(),maxAvailableCarNam));
     }
 }
 
