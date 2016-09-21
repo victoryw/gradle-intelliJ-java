@@ -15,6 +15,10 @@ public class ParkAgent  {
         this.parkLots = parkLots;
     }
 
+    public String GetContent() {
+        return String.format("M %1 %2", GetParkedCount(), GetMaxAvailableCarNum());
+    }
+
     public String Park(Car car) throws NoSpaceException {
 
         ParkLot parkLot = selectLot();
@@ -31,10 +35,10 @@ public class ParkAgent  {
     }
 
     public void Report(int level, StringBuilder builder){
-        builder.append(new String(new char[level]).replace("\0", " "));
-        builder.append(String.format("M %1 %2",GetParkedCount(),GetMaxAvailableCarNum()));
+        StringReportBuilder reportBuilder = new StringReportBuilder();
+        reportBuilder.AppendDialogue(level, builder,this);
         parkLots.stream().forEach(lot->{
-            new StringReportBuilder().AppendReportToReport(level +1, builder, lot);
+            reportBuilder.AppendReportToReport(level +1, builder, lot);
         });
     }
 

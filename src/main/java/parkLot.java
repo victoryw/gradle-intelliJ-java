@@ -14,6 +14,10 @@ public class ParkLot {
 
     HashMap<String,Car> cars = new HashMap<>();
 
+    public String GetContent() {
+        return String.format("%1 %2", GetParkedCars(), maxAvailableCarNam);
+    }
+
     public int GetParkedCars() {
         return this.cars.size();
     }
@@ -50,9 +54,10 @@ public class ParkLot {
     }
 
     public void Report(int level, StringBuilder builder) {
-        builder.append(new String(new char[level]).replace("\0", " "));
-        builder.append(String.format("%1 %2", GetParkedCars(),maxAvailableCarNam));
+        StringReportBuilder reportBuilder = new StringReportBuilder();
+        reportBuilder.AppendDialogue(level,builder,this);
     }
+
 }
 
 
