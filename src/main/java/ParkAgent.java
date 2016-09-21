@@ -34,9 +34,8 @@ public class ParkAgent  {
         return parkLots.stream().map(lot-> lot.Pick(token)).filter(car-> car != null).findFirst().get();
     }
 
-    public void Report(int level, StringBuilder builder){
+    public void Report(int level, StringReportBuilder reportBuilder){
 
-        StringReportBuilder reportBuilder = new StringReportBuilder(builder);
         reportBuilder.AppendDialogue(level,this);
         parkLots.stream().forEach(lot->{
             reportBuilder.AppendReportToReport(level +1, lot);

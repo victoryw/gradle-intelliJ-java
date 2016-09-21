@@ -11,7 +11,6 @@ public class StringReportBuilder {
     }
 
     public StringReportBuilder(StringBuilder stringBuilder){
-
         this.stringBuilder = stringBuilder;
     }
 
@@ -23,12 +22,12 @@ public class StringReportBuilder {
 
     public void AppendReportToReport(int level, ParkLot lot) {
         stringBuilder.append("/r/n");
-        lot.Report(level+1, stringBuilder);
+        lot.Report(level+1, this);
     }
 
     public void AppendReportToReport(int level, ParkAgent boy) {
         stringBuilder.append("/r/n");
-        boy.Report(level+1, stringBuilder);
+        boy.Report(level+1, this);
     }
 
 

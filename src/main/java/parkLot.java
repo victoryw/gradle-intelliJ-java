@@ -53,9 +53,7 @@ public class ParkLot {
         return (double) getAvailableCount() / (double) maxAvailableCarNam;
     }
 
-    public void Report(int level, StringBuilder builder) {
-
-        StringReportBuilder reportBuilder = new StringReportBuilder(builder);
+    public void Report(int level, StringReportBuilder reportBuilder) {
         reportBuilder.AppendDialogue(level,this);
     }
 
