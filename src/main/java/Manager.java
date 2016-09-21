@@ -38,21 +38,29 @@ public class Manager {
 
     public String TotalReport(){
         StringBuilder builder = new StringBuilder();
+
         builder.append(String.format("M %1 %2", GetParkedCount(), GetMaxAvailableCarNum()));
-        builder.append("/r/n");
-        lot.Report(1, builder);
-        builder.append("/r/n");
-        superBoy.Report(1, builder);
-        builder.append("/r/n");
-        smartParkBoy.Report(1, builder);
-        builder.append("/r/n");
-        parkBoy.Report(1, builder);
+
+        AppendParkLotToReport(1, builder, lot);
+
+        AppendBoyToReport(builder, superBoy);
+        AppendBoyToReport(builder,smartParkBoy);
+        AppendBoyToReport(builder,parkBoy);
+
+
         return builder.toString();
 
     }
 
+    protected void AppendBoyToReport(StringBuilder builder, ParkAgent boy) {
+        builder.append("/r/n");
+        boy.Report(1, builder);
+    }
 
-
+    protected void AppendParkLotToReport(int level, StringBuilder builder, ParkLot lot) {
+        builder.append("/r/n");
+        lot.Report(level+1, builder);
+    }
 
 
     protected int GetMaxAvailableCarNum() {
