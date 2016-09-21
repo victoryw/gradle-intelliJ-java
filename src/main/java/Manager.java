@@ -1,5 +1,3 @@
-import java.util.function.Function;
-
 public class Manager extends ParkAgent{
 
 
@@ -41,17 +39,13 @@ public class Manager extends ParkAgent{
     public String TotalReport(){
         StringBuilder builder = new StringBuilder();
         Report(0, builder);
-        parkLots.stream().forEach(lot->{
-            builder.append("/r/n");
-            lot.Report(1,builder);
-        });
-        builder.append("/r/n");
-        superBoy.Report(1,builder);
-        builder.append("/r/n");
-        smartParkBoy.Report(1,builder);
-        builder.append("/r/n");
-        parkBoy.Report(1,builder);
+        AppendNewElement(builder, superBoy);
+        AppendNewElement(builder, smartParkBoy);
+        AppendNewElement(builder, parkBoy);
         return builder.toString();
+
     }
+
+
 
 }

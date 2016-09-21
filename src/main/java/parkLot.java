@@ -4,7 +4,7 @@ import java.util.UUID;
 /**
  * Created by victoryw on 9/20/16.
  */
-public class ParkLot {
+public class ParkLot implements IReport {
 
     protected final int maxAvailableCarNam;
 
@@ -45,6 +45,7 @@ public class ParkLot {
         return (double) getAvailableCount() / (double) maxAvailableCarNam;
     }
 
+    @Override
     public void Report(int level, StringBuilder builder) {
         builder.append(new String(new char[level]).replace("\0", " "));
         builder.append(String.format("%1 %2", maxAvailableCarNam,cars.size()));

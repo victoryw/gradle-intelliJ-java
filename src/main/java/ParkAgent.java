@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Created by victoryw on 9/21/16.
  */
-public class ParkAgent {
+public class ParkAgent implements IReport  {
     protected ArrayList<ParkLot> parkLots = new ArrayList<>();
 
     public ParkAgent(ParkLot parkLot) {
@@ -40,6 +40,13 @@ public class ParkAgent {
     public void Report(int level, StringBuilder builder){
         builder.append(new String(new char[level]).replace("\0", " "));
         builder.append(String.format("M %1 %2",MaxPark(),AvailableCount()));
+        parkLots.stream().forEach(lot->{
+            AppendNewElement(builder, lot);
+        });
+    }
 
+    protected void AppendNewElement(StringBuilder builder, IReport reporter) {
+        builder.append("/r/n");
+        reporter.Report(1,builder);
     }
 }
