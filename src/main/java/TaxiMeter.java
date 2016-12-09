@@ -3,7 +3,7 @@
  */
 public class TaxiMeter {
     public int Computer(int km){
-        return 6;
+        return 5;
     }
 
 }
